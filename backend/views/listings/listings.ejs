@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+    <body>
+        
+       <h4 class="p-2">Popular homes around ></h4>
+        <!-- <a href="http://localhost:8080/listings/new">Create new list</a> -->
+         
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 ">
+   
+    <% for (const list of allListings) {%>
+           <a href="/listings/<%= list._id %>" class="listing-link">
+             <div class="card col">
+                <img src="<%= list.image.url %>" class="card-img-top" alt="listing_images"style="height:20rem">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text">
+                     <b>   <%= list.title %></b>
+                            <br>&#x20A8; <%= list.price.toLocaleString("en-IN") %>
+                    </p>
+                </div>
+            </div>
+           </a>
+            <% } %>
+</div>
+        
