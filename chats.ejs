@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wechat</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@422&display=swap" rel="stylesheet"> </head>
+
+<body>
+    <h2>WeChat</h2>
+    <br>
+ 
+    <button class="btn"> <a href="http://localhost:8080/chats/new">new message</a>
+  </button>
+        <br><br>
+        <div class="container">
+    <% for (let chat of chats) { %>
+      
+        
+        <div class="chat">
+          
+            <div class="logo">
+                <img src="wechat-app-icon.png" alt="logo">
+                 <h4>WeChat Messages</h4> <br>
+           </div>
+            
+           <div class="sender">
+                <div class="icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <span class="name">
+                    <%= chat.from %>
+                </span>
+            </div>
+            <div class="receiver">
+                <div class="icon"> <i class="fa-solid fa-user"></i></div>
+                <span lang="name">
+                    <%= chat.to %>
+                </span>
+            </div>
+            <div class="msg">
+                <p>message: <%= chat.msg %>
+                </p>
+            </div>
+            <br>
+            <hr>
+            <br>
+        <div class="time">
+            <p>Time: <%= chat.created_at.toString().split(" ")[4] %></p> 
+            <br>
+            <p>Date: <%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %></p>
+          
+        </div>  
+        <br>
+            <div class="buttons">
+                <form action="http://localhost:8080/chats/<%= chat._id %>/edit" method="get">
+                <button>edit</button>
+            </form>
+            <form action="http://localhost:8080/chats/<%= chat.id %>?_method=delete" method="post">
+                <button id="delete">delete</button>
+            </form>
+            </div>
+        </div>
+      
+
+        <% } %>
+
+       </div>
+</body>
+
+</html>
